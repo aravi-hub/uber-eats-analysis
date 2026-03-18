@@ -1,13 +1,20 @@
 import streamlit as st
 import pandas as pd
-import mysql.connector
+import sqlite3
 
-# MySQL Connection
-conn = mysql.connector.connect(
-    host="localhost",
-    user="root",
-    password="Aravinth@2431",
-    database="uber_data"
+conn = sqlite3.connect("uber.db")
+
+def load_data():
+    df = pd.read_csv("uber_ak.csv")
+
+    # clean column names
+    df.columns = df.columns.str.strip().str.lower().str.replace(" ", "_")
+
+    # save to SQL
+    df.to_sql("uber_ak", conn, if_exists="replace", index=False)
+
+load_data()
+
 )
 
 # Page Selection (NO SIDEBAR CONFUSION)
