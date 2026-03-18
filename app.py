@@ -15,8 +15,6 @@ def load_data():
 
 load_data()
 
-)
-
 # Page Selection (NO SIDEBAR CONFUSION)
 page = st.selectbox("Select Page", ["Dashboard", "Q&A"])
 
